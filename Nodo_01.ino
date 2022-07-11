@@ -2,6 +2,8 @@
 #include <RF24Network.h>
 #include <SPI.h>
 #include <EEPROM.h>
+#include <LowPower.h>
+
 
 RF24 radio(8, 10);               // nRF24L01 (CE,CSN)
 RF24Network network(radio);// Include the radio in the network
@@ -38,6 +40,9 @@ void loop() {
   DataRead();
   DataWrite(node00,evalor);
   delay(5000);
+  //sleep function
+  LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
+  
 }
 
 void DataRead() {
